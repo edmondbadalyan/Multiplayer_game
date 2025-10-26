@@ -33,7 +33,7 @@ public class EnemyController : MonoBehaviour
     internal void OnChange(List<DataChange> changes)
     {
         SaveReceiveTime();
-        Vector3 position = transform.position;
+        Vector3 position = _character.TargetPosition;
         Vector3 velocity = Vector3.zero;
         foreach (DataChange dataChange in changes) {
 
@@ -57,7 +57,7 @@ public class EnemyController : MonoBehaviour
                 case "vZ":
                     velocity.z = (float)dataChange.Value;
                     break;
-                default: Debug.Log("Не обрабатывается изменение поле" + dataChange.Field); 
+                default: Debug.Log("пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ" + dataChange.Field); 
                     break;
             }
         }

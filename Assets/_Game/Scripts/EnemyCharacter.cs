@@ -1,25 +1,30 @@
+using System;
 using UnityEngine;
 
 public class EnemyCharacter : MonoBehaviour
 {
-    private Vector3 _targetPosition;
-    private float _velocityMagnitude;
+    public Vector3 TargetPosition { get; private set; } = Vector3.zero;
+    private float _velocityMagnitude = 0;
 
+    private void Start()
+    {
+        TargetPosition = transform.position;
+    }
 
     private void Update()
     {
         if (_velocityMagnitude > .1f)
         {
             float maxDistance = _velocityMagnitude * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, _targetPosition, maxDistance);
+            transform.position = Vector3.MoveTowards(transform.position, TargetPosition, maxDistance);
         }
-        else { transform.position = _targetPosition; }
+        else { transform.position = TargetPosition; }
 
     }
 
     public void SetMovement(in Vector3 position,in Vector3 velocity,in float averageTimeInterval)
     {
-        _targetPosition = position + (velocity * averageTimeInterval);
+        TargetPosition = position + (velocity * averageTimeInterval);
         _velocityMagnitude = velocity.magnitude;
     }
 }

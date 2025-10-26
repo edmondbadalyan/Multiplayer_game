@@ -139,3 +139,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7998f86fa6f6534c9a4cc3489220c85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
+  _character: {fileID: 2091355458596174307}
