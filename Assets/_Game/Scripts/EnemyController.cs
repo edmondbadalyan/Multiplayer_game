@@ -9,7 +9,6 @@ public class EnemyController : MonoBehaviour
     private List<float> _receiveTimeInterval = new List<float> { 0, 0, 0, 0, 0 };
 
     private float _lastReceiveTime = 0;
-
     private float AverageTimeInterval
     {
         get { 
@@ -22,6 +21,22 @@ public class EnemyController : MonoBehaviour
             return sum / count;
         }
     }
+    
+    private Player _player;
+
+    public void Init(Player player)
+    {
+        _player = player;
+        _character.SetSpeed(player.speed);
+        player.OnChange += OnChange;
+    }
+
+    private void OnDestroy()
+    {
+        _player.OnChange -= OnChange;
+        Destroy(gameObject);
+    }
+
     private void SaveReceiveTime()
     {
         float interval = Time.time - _lastReceiveTime;

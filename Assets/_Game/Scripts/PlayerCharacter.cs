@@ -24,6 +24,7 @@ public class PlayerCharacter : Character
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+        _Speed = speed;
     }
 
     private void Start()
@@ -71,10 +72,13 @@ public class PlayerCharacter : Character
         _rb.angularVelocity = new Vector3(0,_rotateY,0);
         _rotateY = 0;
     }
-    public void GetMoveInfo(out Vector3 position, out Vector3 velocity)
+    public void GetMoveInfo(out Vector3 position, out Vector3 velocity,out float RotateX, out float RotateY)
     {
         position = transform.position;
         velocity = _rb.linearVelocity;
+        
+        RotateX = _head.localEulerAngles.x;
+        RotateY = transform.eulerAngles.y;
     }
 
     // private bool isFly = true;

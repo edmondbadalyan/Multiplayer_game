@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MultiplayerManager : ColyseusManager<MultiplayerManager>
 {
-    [SerializeField] private GameObject _player;
+    [SerializeField] private PlayerCharacter _player;
     [SerializeField] private EnemyController _enemy;
     private ColyseusRoom<State> _room;
     protected override void Awake()
@@ -16,7 +16,11 @@ public class MultiplayerManager : ColyseusManager<MultiplayerManager>
     }
     private async void Connect()
     {
-        _room = await Instance.client.JoinOrCreate<State>("state_handler");
+        Dictionary<string, object> data = new Dictionary<string, object>()
+        {
+            {"speed", _player._Speed}
+        };
+        _room = await Instance.client.JoinOrCreate<State>("state_handler",data);
         _room.OnStateChange += OnChange;
     }
     private void OnChange(State state, bool isFirstState)
@@ -41,7 +45,8 @@ public class MultiplayerManager : ColyseusManager<MultiplayerManager>
     {
         var position = new Vector3(player.pX, player.pY, player.pZ);
         var enemy = Instantiate(_enemy, position, Quaternion.identity);
-        player.OnChange += enemy.OnChange;
+        _enemy.Init(player);
+        
     }
 
     protected override void OnDestroy()

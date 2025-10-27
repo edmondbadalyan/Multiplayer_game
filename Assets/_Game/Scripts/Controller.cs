@@ -26,15 +26,17 @@ public class Controller : MonoBehaviour
    }
     public void SendMove()
     {
-        _player.GetMoveInfo(out Vector3 position, out Vector3 velocity);
+        _player.GetMoveInfo(out Vector3 position, out Vector3 velocity, out float RotateX, out float RotateY);
         Dictionary<string, object> data = new Dictionary<string, object>()
         {
-            { "pX",position.x}, 
-            { "pY",position.y},
-            { "pZ",position.z},
-            { "vX",velocity.x},
-            { "vY",velocity.y},
-            { "vZ",velocity.z},
+            { "pX",position.x }, 
+            { "pY",position.y },
+            { "pZ",position.z },
+            { "vX",velocity.x },
+            { "vY",velocity.y },
+            { "vZ",velocity.z },
+            { "rX",RotateX },
+            { "rY",RotateY }
         };
         MultiplayerManager.Instance.SendMessage("move",data);
     }
