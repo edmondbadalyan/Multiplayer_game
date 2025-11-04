@@ -1,7 +1,5 @@
 using Colyseus;
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using static Controller;
 
@@ -21,7 +19,8 @@ public class MultiplayerManager : ColyseusManager<MultiplayerManager>
     {
         Dictionary<string, object> data = new Dictionary<string, object>()
         {
-            {"speed", _player._Speed}
+            {"speed", _player._Speed},
+            {"hp", _player.MaxHealth}
         };
         _room = await Instance.client.JoinOrCreate<State>("state_handler",data);
         _room.OnStateChange += OnChange;
@@ -33,7 +32,7 @@ public class MultiplayerManager : ColyseusManager<MultiplayerManager>
         ShootInfo shootInfo = JsonUtility.FromJson<ShootInfo>(jsonShootInfo);
         if(_enemies.ContainsKey(shootInfo.key) == false)
         {
-            Debug.LogError("Enemy нет а он пытался стрелять");
+            Debug.LogError("Enemy пїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
             return;
         }
         _enemies[shootInfo.key].Shoot(shootInfo);

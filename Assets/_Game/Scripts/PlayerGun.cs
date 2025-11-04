@@ -4,7 +4,7 @@ using static Controller;
 
 public class PlayerGun : Gun
 {
-    
+    [SerializeField] private int _damage;
     [SerializeField] private Transform _bulletPoint;
     [SerializeField] private float _bulletSpeed;
     [SerializeField] private float _shootDelay;
@@ -21,7 +21,7 @@ public class PlayerGun : Gun
         _lastShootTime = Time.time;
 
         Bullet check = Instantiate(_bulletPrefab, position, _bulletPoint.rotation);
-        check.Init(velocity);
+        check.Init(velocity,_damage);
         shoot?.Invoke();
         Debug.Log($"{check}");
         
