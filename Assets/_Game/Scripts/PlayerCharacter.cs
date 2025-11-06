@@ -1,12 +1,16 @@
-
+﻿
+using Colyseus.Schema;
 using System;
+using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.Mathematics.Geometry;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 
 public class PlayerCharacter : Character
 {
+    [SerializeField] private Health _health;
     [SerializeField] private float speed = 2f;
     [SerializeField] private Transform _head;
     [SerializeField] private Transform _cameraPoint;
@@ -29,10 +33,16 @@ public class PlayerCharacter : Character
 
     private void Start()
     {
-        Transform camera = Camera.main.transform;
-        camera.parent = _cameraPoint;
-        camera.localPosition = Vector3.zero;
-        camera.localRotation = Quaternion.identity;
+       
+        
+            Transform camera = Camera.main.transform;
+            camera.parent = _cameraPoint;
+            camera.localPosition = Vector3.zero;
+            camera.localRotation = Quaternion.identity;
+         
+
+        _health.SetMax(MaxHealth);
+        _health.SetCurrent(MaxHealth);
     }
 
     private void FixedUpdate()
@@ -107,5 +117,25 @@ public class PlayerCharacter : Character
 
         jumpTimer = Time.time; 
         _rb.AddForce(0,jumpForce,0,ForceMode.VelocityChange);
+    }
+
+    internal void OnChange(List<DataChange> changes)
+    {
+        foreach (DataChange dataChange in changes)
+        {
+
+            switch (dataChange.Field)
+            {
+                case "loss":
+                    MultiplayerManager.Instance._lossCounter.SetPlayerLoss((byte)dataChange.Value);
+                    break;
+                case "currentHP":
+                    _health.SetCurrent((sbyte)dataChange.Value);
+                    break;
+                default:
+                    Debug.Log("�� �������������� ��������� ����" + dataChange.Field);
+                    break;
+            }
+        }
     }
 }

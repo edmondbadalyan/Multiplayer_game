@@ -277,6 +277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   <_Speed>k__BackingField: 2
   <MaxHealth>k__BackingField: 10
+  _health: {fileID: 8540908045319762511}
   speed: 2
   _head: {fileID: 2344819108969168704}
   _cameraPoint: {fileID: 7966298869383985530}
@@ -518,6 +519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthUI
   _filledImage: {fileID: 2786471511585860251}
+  _defaultWidth: 178.4
 --- !u!1001 &8468575901504587261
 PrefabInstance:
   m_ObjectHideFlags: 0
