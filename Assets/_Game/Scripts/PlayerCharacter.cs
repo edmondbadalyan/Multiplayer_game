@@ -65,10 +65,79 @@ public class PlayerCharacter : Character
 
         Vector3 velocity = (transform.forward * _inputV + transform.right * _inputH).normalized * speed;
         velocity.y = _rb.linearVelocity.y;
-        _Velocity = velocity;
-        _rb.linearVelocity = _Velocity;
+        base._Velocity = velocity;
+        _rb.linearVelocity = base._Velocity;
+
 
     }
+    //public void Move()
+    //{
+    //    // Получаем направление, игнорируя вертикальную компоненту
+    //    Vector3 forward = transform.forward;
+    //    forward.y = 0;
+    //    forward.Normalize();
+
+    //    Vector3 right = transform.right;
+    //    right.y = 0;
+    //    right.Normalize();
+
+    //    Vector3 velocity = (forward * _inputV + right * _inputH).normalized * speed;
+    //    velocity.y = _rb.linearVelocity.y; // Сохраняем вертикальную скорость (прыжки, гравитация)
+
+    //    _Velocity = velocity;
+    //    _rb.linearVelocity = _Velocity;
+    //}
+
+
+    //public void Move()
+    //{
+    //    // Получаем направление, игнорируя вертикальную компоненту
+    //    Vector3 forward = transform.forward;
+    //    forward.y = 0;
+    //    forward.Normalize();
+
+    //    Vector3 right = transform.right;
+    //    right.y = 0;
+    //    right.Normalize();
+
+    //    // Вычисляем целевую горизонтальную скорость
+    //    Vector3 targetHorizontalVelocity = (forward * _inputV + right * _inputH).normalized * speed;
+
+    //    // КЛЮЧЕВОЕ ОТЛИЧИЕ: Создаем новый вектор velocity, 
+    //    // где X и Z - наши целевые значения, 
+    //    // а Y - ТЕКУЩЕЕ значение из физики (НЕ ТРОГАЕМ!)
+    //    Vector3 newVelocity = new Vector3(
+    //        targetHorizontalVelocity.x,  // Новая горизонтальная X
+    //        _rb.linearVelocity.y,         // ОСТАВЛЯЕМ текущую Y (физика сама управляет)
+    //        targetHorizontalVelocity.z   // Новая горизонтальная Z
+    //    );
+
+    //    _rb.linearVelocity = newVelocity;
+    //    _Velocity = newVelocity;
+    //}
+
+    //public void Move()
+    //{
+    //    Vector3 forward = transform.forward;
+    //    forward.y = 0;
+    //    forward.Normalize();
+
+    //    Vector3 right = transform.right;
+    //    right.y = 0;
+    //    right.Normalize();
+
+    //    Vector3 targetVelocity = (forward * _inputV + right * _inputH).normalized * speed;
+
+    //    // ПРАВИЛЬНЫЙ ПОДХОД: Используем MovePosition или AddForce вместо прямой установки velocity
+    //    // Вариант 1: Используем AddForce для плавного движения
+    //    Vector3 velocityChange = targetVelocity - new Vector3(_rb.linearVelocity.x, 0, _rb.linearVelocity.z);
+    //    _rb.AddForce(velocityChange * _rb.mass, ForceMode.Force);
+
+    //    _Velocity = _rb.linearVelocity;
+    //}
+
+
+
 
     public void RotateX(float value)
     {

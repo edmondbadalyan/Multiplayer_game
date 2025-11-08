@@ -398,15 +398,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328b19b72b69aaf4a858f10be266e9b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  <_Speed>k__BackingField: 6
+  <_Speed>k__BackingField: 0
   <MaxHealth>k__BackingField: 10
   _health: {fileID: 8540908045319762511}
-  speed: 2
+  speed: 10
   _head: {fileID: 2344819108969168704}
   _cameraPoint: {fileID: 7966298869383985530}
   _minHeadAngle: -90
   _maxHeadAngle: 90
-  jumpForce: 2
+  jumpForce: 3
   checkFly: {fileID: -1918617528386886774}
 --- !u!114 &1863639865601246445
 MonoBehaviour:
