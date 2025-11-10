@@ -65,8 +65,8 @@ public class PlayerCharacter : Character
 
         Vector3 velocity = (transform.forward * _inputV + transform.right * _inputH).normalized * speed;
         velocity.y = _rb.linearVelocity.y;
-        base._Velocity = velocity;
-        _rb.linearVelocity = base._Velocity;
+        _Velocity = velocity;
+        _rb.linearVelocity = _Velocity;
 
 
     }
